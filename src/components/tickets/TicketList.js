@@ -5,19 +5,24 @@ import { Ticket } from "./Ticket"
 import { TicketFilterBar } from "./TicketFilterBar"
 
 
-export const TicketList = () => {
+export const TicketList = ( {currentUser}) => {
     //Three state variables are initialized using the useState hook. These variables will hold different pieces of data for the component.
     const [allTickets, setAllTickets] = useState([]) //[stateVariable, setterFunction]
     const [showEmergencyOnly, setShowEmergencyOnly] = useState(false)
     const [filteredTickets, setFilteredTickets] = useState([])
     const [searchTerm, setSearchTerm] = useState("")
 
-    //getAllTickets is imported and useEffect hook is used to fetch initial list of tickets
-    useEffect(() => {
+    const getAndSetTickets = () => {
         getAllTickets().then(ticketsArray => {
             setAllTickets(ticketsArray)
-            console.log("tickets set!")
+            
         })
+    }
+    
+    
+    //getAllTickets is imported and useEffect hook is used to fetch initial list of tickets
+    useEffect(() => {
+        getAndSetTickets()
 
     }, []) //ONLY runs on initial render of component
 
@@ -44,7 +49,12 @@ export const TicketList = () => {
             <TicketFilterBar setShowEmergencyOnly={setShowEmergencyOnly} setSearchTerm={setSearchTerm} />
             <article className="tickets">
                 {filteredTickets.map(ticketObj => {
-                    return (<Ticket ticket={ticketObj} key={ticketObj.id} />
+                    //pass ticket prop
+                    return (<Ticket 
+                        currentUser={currentUser} 
+                        ticket={ticketObj} 
+                        key={ticketObj.id}
+                        getAndSetTickets={getAndSetTickets} />
                     )
                 })}
             </article>
