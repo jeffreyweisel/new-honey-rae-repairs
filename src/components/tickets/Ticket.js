@@ -59,7 +59,8 @@ export const Ticket = ({ ticket, currentUser, getAndSetTickets }) => {
                 <div>
                     <div className="ticket-info">assignee</div>
                     <div>{assignedEmployee ? assignedEmployee.user?.fullName : "None"}</div>
-
+                </div>
+                <div>
                     <div className="ticket-info">emergency</div>
                     <div>{ticket.emergency ? "yes" : "no"}</div>
                 </div>

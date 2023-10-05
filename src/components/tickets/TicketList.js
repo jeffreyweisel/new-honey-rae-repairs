@@ -12,6 +12,8 @@ export const TicketList = ( {currentUser}) => {
     const [filteredTickets, setFilteredTickets] = useState([])
     const [searchTerm, setSearchTerm] = useState("")
 
+    
+    
     const getAndSetTickets = () => {
         getAllTickets().then(ticketsArray => {
             setAllTickets(ticketsArray)

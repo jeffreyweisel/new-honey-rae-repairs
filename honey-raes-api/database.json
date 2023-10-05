@@ -67,7 +67,7 @@
     {
       "id": 1,
       "specialty": "Macbook Pros",
-      "rate": "100",
+      "rate": "107",
       "userId": 4
     },
     {
@@ -83,9 +83,9 @@
       "userId": 6
     },
     {
-      "id": 3,
+      "id": 4,
       "specialty": "Android",
-      "rate": 35.99,
+      "rate": "41.99",
       "userId": 7
     }
   ],
