@@ -91,13 +91,6 @@
   ],
   "serviceTickets": [
     {
-      "id": 1,
-      "userId": 3,
-      "description": "Cracked phone screen",
-      "emergency": false,
-      "dateCompleted": "Fri Apr 29 2022 14:02:20 GMT-0500 (Central Daylight Time)"
-    },
-    {
       "id": 2,
       "userId": 3,
       "description": "Xbox has red ring of death",
@@ -138,14 +131,16 @@
       "emergency": true,
       "dateCompleted": "",
       "id": 7
+    },
+    {
+      "userId": 3,
+      "description": "phone broke doe",
+      "emergency": true,
+      "dateCompleted": "",
+      "id": 8
     }
   ],
   "employeeTickets": [
-    {
-      "id": 1,
-      "employeeId": 3,
-      "serviceTicketId": 1
-    },
     {
       "id": 3,
       "employeeId": 1,
