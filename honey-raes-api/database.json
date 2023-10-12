@@ -58,8 +58,8 @@
     },
     {
       "id": 3,
-      "address": "161 Wessington Place",
-      "phoneNumber": "865-266-0357",
+      "address": "169 Wessington Place",
+      "phoneNumber": "865-266-8999",
       "userId": 3
     }
   ],
@@ -67,7 +67,7 @@
     {
       "id": 1,
       "specialty": "Macbook Pros",
-      "rate": "115",
+      "rate": "123",
       "userId": 4
     },
     {
@@ -114,9 +114,9 @@
     {
       "id": 5,
       "userId": 3,
-      "description": "Speaker phone does not work on iPhone",
+      "description": "Speaker on phone is broken",
       "emergency": true,
-      "dateCompleted": "2023-10-04T20:32:39.336Z"
+      "dateCompleted": ""
     },
     {
       "id": 6,
@@ -134,8 +134,8 @@
     },
     {
       "userId": 3,
-      "description": "phone broke doe",
-      "emergency": true,
+      "description": "New",
+      "emergency": false,
       "dateCompleted": "",
       "id": 8
     }

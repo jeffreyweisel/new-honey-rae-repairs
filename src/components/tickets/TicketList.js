@@ -36,7 +36,7 @@ export const TicketList = ( {currentUser}) => {
     useEffect(() => {
         getAndSetTickets()
 
-    }, [currentUser]) //ONLY runs on initial render of component
+    }, [currentUser]) //runs based on the user that is logged in
 
     //useEffect hook filters the tickets based on the value of showEmergencyOnly and updates the filteredTickets state accordingly
     useEffect(() => {
@@ -78,9 +78,10 @@ export const TicketList = ( {currentUser}) => {
                     //pass ticket prop
                     return (<Ticket 
                         currentUser={currentUser} 
-                        ticket={ticketObj} 
+                        ticket={ticketObj}
                         key={ticketObj.id}
                         getAndSetTickets={getAndSetTickets} />
+                         
                     )
                 })}
             </article>

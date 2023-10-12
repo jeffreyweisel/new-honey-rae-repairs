@@ -3,9 +3,12 @@ import { Welcome } from "../components/welcome/Welcome"
 import { CustomerNav } from "../components/nav/CustomerNav"
 import { TicketList } from "../components/tickets/TicketList"
 import { TicketForm } from "../components/forms/TicketForm"
+import { TicketEditForm } from "../components/forms/TicketEditForm"
+import { CustomerForm } from "../components/forms/CustomerForm"
 
 
-export const CustomerViews = ({currentUser}) => {
+
+export const CustomerViews = ({currentUser, ticket}) => {
 
     return <>
     <Routes>
@@ -20,7 +23,10 @@ export const CustomerViews = ({currentUser}) => {
             <Route path="tickets">
                 <Route index element={<TicketList currentUser={currentUser}/>} /> 
             <Route path="create" element={<TicketForm currentUser={currentUser}/>} />
+            <Route path="edit" element={< TicketEditForm currentUser={currentUser} ticket={ticket} />}/>
             </Route>
+            <Route path="profile" element={< CustomerForm currentUser={currentUser}/>}/>
+      
         </Route>
     </Routes>
     </>

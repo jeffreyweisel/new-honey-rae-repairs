@@ -3,9 +3,12 @@
 import { useEffect, useState } from "react"
 import { getAllEmployees } from "../../services/employeeServices"
 import { assignTicket, deleteTicket, updateTicket } from "../../services/ticketServices"
+import { useNavigate } from "react-router-dom"
 
 export const Ticket = ({ ticket, currentUser, getAndSetTickets }) => {
 
+    const navigate = useNavigate()
+    
     const [employees, setEmployees] = useState([])
     const [assignedEmployee, setAssignedEmployee] = useState({})
 
@@ -57,6 +60,7 @@ export const Ticket = ({ ticket, currentUser, getAndSetTickets }) => {
         })
     }
 
+    
     return (
         <section className="ticket">
             <header className="ticket-info">{ticket.id}</header>
@@ -72,19 +76,25 @@ export const Ticket = ({ ticket, currentUser, getAndSetTickets }) => {
                 </div>
                 <div className="btn-container">
                     {/* if logged in user is an employee and there is no employeeTicket associated with service ticket, then a button yto claim should diplay */}
-                    {currentUser.isStaff && !assignedEmployee ? (<button 
-                    className="btn btn-secondary" 
-                    onClick={handleCLaim}
+                    {currentUser.isStaff && !assignedEmployee ? (<button
+                        className="btn btn-secondary"
+                        onClick={handleCLaim}
                     >Claim</button>) : ""
                     }
                     {/* if the logged in user is the assigned employee for the ticket and there is no datCompleted, thena  button  to close the ticket should display */}
                     {assignedEmployee?.userId === currentUser.id && !ticket.dateCompleted ?
                         (<button className="btn btn-warning"
-                        onClick={handleClose}
+                            onClick={handleClose}
                         >Close</button>) : ""}
-                    {!currentUser.isStaff   ?
+                    {!currentUser.isStaff ?
+                    (<button className="filter-btn btn-primary"
+                        onClick={() => {
+                            navigate("/tickets/edit")
+                        }}
+                    >Edit</button>) : ""}
+                    {!currentUser.isStaff ?
                         (<button className="btn btn-warning"
-                        onClick={handleDelete}
+                            onClick={handleDelete}
                         >Delete</button>) : ""}
                 </div>
             </footer>

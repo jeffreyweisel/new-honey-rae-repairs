@@ -5,6 +5,11 @@ export const getAllTickets =  () => {
     
 }
 
+export const getServiceTickets = () => {
+    return fetch(`http://localhost:8088/serviceTickets`).then(res => res.json())
+}
+
+
 export const assignTicket = (employeeTicket) => {
     return fetch('http://localhost:8088/employeeTickets' , {
         method: "POST", 
@@ -49,3 +54,12 @@ export const createTicket = (ticket) => {
 
 }
 
+export const editTicket = (ticket) => {
+    return fetch(`http://localhost:8088/serviceTickets/${ticket.id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(ticket),
+    }).then((response) => response.json())  
+}
