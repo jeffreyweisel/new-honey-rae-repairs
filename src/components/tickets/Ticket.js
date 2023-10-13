@@ -89,7 +89,7 @@ export const Ticket = ({ ticket, currentUser, getAndSetTickets }) => {
                     {!currentUser.isStaff ?
                     (<button className="filter-btn btn-primary"
                         onClick={() => {
-                            navigate("/tickets/edit")
+                            navigate("/tickets/edit/"+ ticket.id, {ticket})
                         }}
                     >Edit</button>) : ""}
                     {!currentUser.isStaff ?

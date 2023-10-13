@@ -23,7 +23,8 @@ export const CustomerViews = ({currentUser, ticket}) => {
             <Route path="tickets">
                 <Route index element={<TicketList currentUser={currentUser}/>} /> 
             <Route path="create" element={<TicketForm currentUser={currentUser}/>} />
-            <Route path="edit" element={< TicketEditForm currentUser={currentUser} ticket={ticket} />}/>
+            <Route path="edit/:ticketId" element={< TicketEditForm currentUser={currentUser} ticket={ticket} />}/>
+            
             </Route>
             <Route path="profile" element={< CustomerForm currentUser={currentUser}/>}/>
       

@@ -5,8 +5,8 @@ export const getAllTickets =  () => {
     
 }
 
-export const getServiceTickets = () => {
-    return fetch(`http://localhost:8088/serviceTickets`).then(res => res.json())
+export const getServiceTicket = (id) => {
+    return fetch(`http://localhost:8088/serviceTickets/${id}`).then(res => res.json())
 }
 
 

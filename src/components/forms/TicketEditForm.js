@@ -1,77 +1,90 @@
 import { useEffect, useState } from "react"
-import { editTicket, getServiceTickets, updateTicket } from "../../services/ticketServices"
-import { useNavigate } from "react-router-dom"
+import { editTicket, getServiceTicket } from "../../services/ticketServices"
+import { useNavigate, useParams } from "react-router-dom"
 
 export const TicketEditForm = ({ currentUser }) => {
 
+
+
+    const {ticketId} = useParams()
+    const navigate = useNavigate()
     const [ticket, setTicket] = useState({})
 
-    const navigate = useNavigate()
+
 
     useEffect(() => {
-        getServiceTickets(ticket.id).then((data) => {
-            const ticketObj = data[0]
-            setTicket(ticketObj)
+        
+        
+        getServiceTicket(ticketId).then((ticket) => {
+            console.log(ticketId)
+            
+            setTicket(ticket)
+            
+            
         })
-    }, [ticket])
+    }, [ticketId])
 
 
-    const handleSave = () => {
-        const savedTicket = {
-            id: ticket.id,
-            userId: ticket.userId,
-            description: ticket.description,
-            emergency: ticket.emergency,
-            dateCompleted: new Date()
+    const handleSave = (e) => {
+        e.preventDefault()
+        if (ticket.description) {
+            const editedTicket = {
+                id: ticket.id,
+                userId: currentUser.id,
+                description: ticket.description,
+                emergency: ticket.emergency,
+                dateCompleted: ticket.dateCompleted
+            }
+            editTicket(editedTicket).then(() => {
+                console.log(editedTicket)
+                navigate('/tickets')
+            })
+
+        } else {
+            window.alert('Please fill out description')
+
         }
 
-        updateTicket(savedTicket).then(() => {
-            navigate('/')
-        })
     }
 
-    const handleInputChange = (event) => {
-        const stateCopy = { ...ticket }
-        stateCopy[event.target.name] = event.target.value
-        setTicket(stateCopy)
-      }
-
     return (
-        <form className="profile">
-            <h2>Update Ticket</h2>
+        <form>
+            <h2>Edit Service Ticket</h2>
             <fieldset>
                 <div className="form-group">
-                    <label>Description: </label>
+                    <label>Description</label>
                     <input
                         type="text"
-                        value={ticket.description ? ticket.description : ''}
-                        onChange={handleInputChange}
-                        required
                         className="form-control"
-                        name="description" />
+                        value={ticket.description ? ticket.description : ''}
+                        onChange={(event) => {
+                            const ticketCopy = { ...ticket }
+                            ticketCopy.description = event.target.value
+                            setTicket(ticketCopy)
+                        }}
+
+                    />
                 </div>
             </fieldset>
-            <div className="form-group">
+            <fieldset>
+                <div className="form-group">
                     <label>
                         Emergency:
                         <input
                             type="checkbox"
                             onChange={(event) => {
-                                const ticketCopy = {...ticket}
+                                const ticketCopy = { ...ticket }
                                 ticketCopy.emergency = event.target.checked
                                 setTicket(ticketCopy)
                             }}
+
                         />
                     </label>
                 </div>
+            </fieldset>
             <fieldset>
                 <div className="form-group">
-                    <button
-                        className="form-btn btn-primary"
-                        onClick={handleSave}>
-
-                        Save Profile
-                    </button>
+                    <button className="btn-primary form-btn" onClick={handleSave}>Save Changes</button>
                 </div>
             </fieldset>
         </form>
